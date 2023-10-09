@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>save</title>
+</head>
+<body>
+<!-- action 속성: form 에 작성한 데이터를 어디로 보낼지 지정 -->
+<!-- get(보임)과 post(안보임)의 차이: 주소창에 내가 보내는 데이터가 보이냐? -->
+    <form action="/member/save" method="post">
+        <!-- 입력받는 것은 전부 input tag -->
+        <!-- name 속성: 서버로 전송할 때 변수이름의 역할 -->
+        email: <input type="text" name="memberEmail"> <br>
+        password: <input type="password" name="memberPassword"> <br>
+        name: <input type="text" name="memberName"> <br>
+        <!-- submit: 버튼 -->
+        <input type="submit" value="register">
+    </form>
+</body>
+</html>
