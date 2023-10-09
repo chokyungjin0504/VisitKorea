@@ -17,6 +17,11 @@ public class MemberController {
     //생성자 주입
     private final MemberService memberService;
 
+    @GetMapping("/member/index")
+    public String mainPage() {
+        return "index";
+    }
+
     //memberService 필드를 매개변수로 하는 controller 생성자를 @RequiredArgsConstructor 어노테이션이 만들어줌
     //MemberController class에 대한 객체를 스프링 빈으로 등록할 때 자동적으로 서비스 클래스에 대한 객체를 주입 받음
     //주입 받는다? Controller class가 Service class의 자원으로 쓰는 권한 생김
@@ -27,7 +32,7 @@ public class MemberController {
         return "save";
     }
 
-    @PostMapping("member/save")
+    @PostMapping("/member/save")
     //@RequestParam("memberEmail") String memberEmail,
     //@RequestParam("memberPassword") String memberPassword,
     //@RequestParam("memberName") String memberName

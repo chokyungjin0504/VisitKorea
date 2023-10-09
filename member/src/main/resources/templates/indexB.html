@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>indexB</title>
+</head>
+<body>
+<form action="/member/indexB" method="post">
+    <button onclick="saveReq()">글 작성</button>
+    <a href="/member/saveB">글 작성(링크)</a>
+</form>
+</body>
+<script>
+  const saveReq = () => {
+    location.href="/member/saveB";
+  }
+</script>
+</html>

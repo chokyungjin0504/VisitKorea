@@ -12,4 +12,7 @@ public class HomeController {
         //이 부분이 호출됨 -> Spring 기반이기 때문에 이런 기본 코드로 가능
         return "index"; //인덱스라는 HTML 파일을 return => templetes 폴더의 index.html을 찾아감.
     }
+    public String indexB() {
+        return "indexB";
+    }
 }
