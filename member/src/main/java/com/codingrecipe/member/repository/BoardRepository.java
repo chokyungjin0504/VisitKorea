@@ -1,0 +1,22 @@
+package com.codingrecipe.member.repository;
+
+
+import com.codingrecipe.member.entity.BoardEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
