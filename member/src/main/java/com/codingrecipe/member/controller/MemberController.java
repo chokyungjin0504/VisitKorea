@@ -1,13 +1,15 @@
 package com.codingrecipe.member.controller;
 
-import org.springframework.ui.Model;
 import com.codingrecipe.member.dto.MemberDTO;
 import com.codingrecipe.member.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -33,9 +35,9 @@ public class MemberController {
     }
 
     @PostMapping("/member/save")
-    //@RequestParam("memberEmail") String memberEmail,
-    //@RequestParam("memberPassword") String memberPassword,
-    //@RequestParam("memberName") String memberName
+//    @RequestParam("memberEmail") String memberEmail,
+//    @RequestParam("memberPassword") String memberPassword,
+//    @RequestParam("memberName") String memberName
     //위의 것들을 @ModelAttribute로 대체
     public String save(@ModelAttribute MemberDTO memberDTO) {
         //@RequestParmam: memberEmail에 담겨있는 값을 memberEmail로 옮긴다
@@ -65,7 +67,7 @@ public class MemberController {
     }
 
     //링크클릭? -> get
-    @GetMapping("/member/")
+    @GetMapping("/member/list")
     //Spring에서 실어나르는 것: Model
     public String findAll(Model model) {
         //DB의 모든 데이터 가져오기, 데이터를 가져올 때는 list를 많이 씀
