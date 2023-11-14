@@ -50,7 +50,7 @@
                             <!-- Post title-->
                             <h1 class="fw-bolder mb-1" th:text="${board.boardTitle}"></h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2" th:text="${board.boardCreatedTime}"></div>
+<!--                            <div class="text-muted fst-italic mb-2" th:text="${board.boardCreatedTime}"></div>-->
                             <!-- Post categories-->
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!" th:text="${board.boardHits}"></a>
                         </header>
@@ -106,9 +106,7 @@
     </div>
 </footer>
 <!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js" th:inline="javascript">
+<script th:inline="javascript">
     const listReq = () => {
         console.log("목록 요청");
         const page = [[${page}]];

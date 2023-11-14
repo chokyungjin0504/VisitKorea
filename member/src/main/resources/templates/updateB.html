@@ -1,28 +1,82 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>update</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content />
+    <meta name="author" content />
+    <title>updateB</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/bootstrap/assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/bootstrap/css/styles.css" rel="stylesheet" />
 </head>
-<body>
+<body class="d-flex flex-column">
 <form action="/member/updateB" method="post" name="updateForm">
-    <input type="hidden" name="id" th:value="${boardUpdate.id}">
-    writer: <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}" readonly> <br>
-    pass: <input type="text" name="boardPass" id="boardPass"> <br>
-    title: <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br>
-    contents: <textarea name="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}"></textarea> <br>
-    <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}">
-    <input type="button" value="글수정" onclick="boardUpdate()">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="/member/index">VISIT KOREA</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!--                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>-->
+                    <li class="nav-item"><a class="nav-link" href="/member/update">My Page</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/member/logout">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <input type="hidden" name="id" th:value="${boardUpdate.id}"><br><br>
+                    writer:    <input type="text" name="boardWriter" th:value="${boardUpdate.boardWriter}" readonly> <br><br>
+                    pass:    <input type="text" name="boardPass" id="boardPass"> <br><br>
+                    title:    <input type="text" name="boardTitle" th:value="${boardUpdate.boardTitle}"> <br><br>
+                    contents:    <textarea name="boardContents" cols="30" rows="10" th:text="${boardUpdate.boardContents}"></textarea> <br><br>
+                    <input type="hidden" name="boardHits" th:value="${boardUpdate.boardHits}"><br><br>
+                    <input type="button" value="글수정" onclick="boardUpdate()"><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    <!-- Footer-->
+    <footer class="bg-dark py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Your Website 2023</div></div>
+                <div class="col-auto">
+                    <a class="link-light small" href="#!">Privacy</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Terms</a>
+                    <span class="text-white mx-1">&middot;</span>
+                    <a class="link-light small" href="#!">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script th:inline="javascript">
+        const boardUpdate = () => {
+          const pass = [[${boardUpdate.boardPass}]];
+          const inputPass = document.getElementById("boardPass").value;
+          if (pass == inputPass) {
+            document.updateForm.submit();
+          } else {
+            alert("비밀번호가 일치하지 않습니다!");
+          }
+        }
+    </script>
 </form>
-<script th:inline="javascript">
-    const boardUpdate = () => {
-      const pass = [[${boardUpdate.boardPass}]];
-      const inputPass = document.getElementById("boardPass").value;
-      if (pass == inputPass) {
-        document.updateForm.submit();
-      } else {
-        alert("비밀번호가 일치하지 않습니다!");
-      }
-    }
-</script>
 </body>
+</html>

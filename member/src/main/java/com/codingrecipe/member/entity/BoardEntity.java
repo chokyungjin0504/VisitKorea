@@ -46,7 +46,8 @@ public class BoardEntity {
         boardEntity.setBoardPass(boardDTO.getBoardPass());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
-        boardEntity.setBoardHits(boardEntity.getBoardHits());
+        boardEntity.setBoardHits(boardDTO.getBoardHits());
         return boardEntity;
     }
+
 }
