@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -78,13 +77,13 @@ public class MemberController {
     }
 
     //{}안의 값을 취하겠다
-    @GetMapping("/member/{id}")
-    //경로 상에 있는 것을 가져올 때: PathVariable
-    public String findById(@PathVariable Long id, Model model) {
-        MemberDTO memberDTO = memberService.findById(id);
-        model.addAttribute("member",memberDTO);
-        return "detail";
-    }
+//    @GetMapping("/member/{id}")
+//    //경로 상에 있는 것을 가져올 때: PathVariable
+//    public String findById(@PathVariable Long id, Model model) {
+//        MemberDTO memberDTO = memberService.findById(id);
+//        model.addAttribute("member",memberDTO);
+//        return "detail";
+//    }
 
     @GetMapping("/member/update")
     public String updateForm(HttpSession session, Model model) {

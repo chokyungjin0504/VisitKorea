@@ -67,16 +67,6 @@ public class MemberService {
         return memberDTOList;
     }
 
-    public MemberDTO findById(Long id) {
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
-        if (optionalMemberEntity.isPresent()) {
-            //get: optional 객체 한번 까기
-            return MemberDTO.toMemberDTO(optionalMemberEntity.get());
-        } else {
-            return null;
-        }
-    }
-
     public MemberDTO updateForm(String myEmail) {
         //email로 db에서 회원정보 접근
         Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(myEmail);
