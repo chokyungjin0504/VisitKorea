@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>paging</title>
+    <title>paging</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="/bootstrap/assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/bootstrap/css/styles.css" rel="stylesheet" />
+</head>
+<style>
+    .text-mid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+</style>
+<body class="d-flex flex-column">
+<form action="/member/indexB" method="post">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="/member/index">VISIT KOREA</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="/member/update">My Page</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/member/logout">Sign out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Blog preview section-->
+        <section class="py-5">
+            <div class="container px-5">
+                <h2 class="fw-bolder fs-5 mb-4">Recent Stories</h2>
+                <div class="row gx-5">
+                    <tr th:each="board: ${boardList}">
+                        <div class="col-lg-4 mb-5">
+                            <div class="card h-100 shadow border-0">
+                                <img class="card-img-top" src="https://dummyimage.com/600x350/ced4da/6c757d" alt="..." />
+                                <div class="card-body p-4">
+                                    <a class="text-decoration-none link-dark stretched-link" th:href="@{${board.id}}"><div class="h5 card-title mb-3" th:text="${board.boardTitle}"></div></a>
+                                    <p class="card-text mb-0" th:text="${board.boardContents}"></p>
+                                </div>
+                                <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex align-items-center">
+                                            <img class="rounded-circle me-3" src="https://dummyimage.com/40x40/ced4da/6c757d" alt="..." />
+                                            <div>
+                                                <div class="small">
+                                                    <div class="fw-bold" th:text="${board.boardWriter}"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="small">
+                                            <div class="fw-bold">Views</div>
+                                            <div class="text-muted" th:text="${board.boardHits}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tr>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <!-- 첫번째 페이지로 이동 -->
+                    <!-- /board/paging?page=1 -->
+                    <div>
+                    <a th:href="@{/member/paging(page=1)}">First</a>
+                    </div>
+                    <div class="text-start mb-5 mb-xl-0">
+                        <a class="text-decoration-none" th:href="${boardList.first} ? '#' : @{/member/paging(page=${boardList.number})}">
+                            Back
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <div class="text-mid mb-5 mb-xl-0">
+                        <!-- 페이지 번호 링크(현재 페이지는 숫자만) -->
+                        <span th:each="page, iterStat: ${#numbers.sequence(startPage, endPage)}">
+                            <!-- 현재페이지는 링크 없이 숫자만 -->
+                            <span th:if="${page == boardList.number + 1}" th:text="${page}"></span>
+                            <!-- 현재페이지 번호가 아닌 다른 페이지번호에는 링크를 보여줌 -->
+                            <span th:unless="${page == boardList.number + 1}">
+                                <a th:href="@{/member/paging(page=${page})}" th:text="${page}"></a>
+                            </span>
+                            <!-- 마지막 숫자가 아니라면 공백 추가 -->
+                            <span th:unless="${iterStat.last}"> &nbsp; </span>
+                        </span>
+                    </div>
+                    <div class="text-end mb-5 mb-xl-0">
+                        <a class="text-decoration-none" th:href="${boardList.last} ? '#' : @{/member/paging(page=${boardList.number + 2})}">
+                            Next
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div>
+                        <!-- 마지막 페이지로 이동 -->
+                        <a th:href="@{/member/paging(page=${boardList.totalPages})}">Last</a>
+                    </div>
+                </div>
+
+                <br>
+                <div class="text-end mb-5 mb-xl-0">
+                    <a class="btn btn-primary btn-sm px-4 me-sm-3" href="/member/saveB">New</a>
+                </div>
+            </div>
+        </section>
+    </main>
+<!--&lt;!&ndash; 첫번째 페이지로 이동 &ndash;&gt;-->
+<!--&lt;!&ndash; /board/paging?page=1 &ndash;&gt;-->
+<!--<a th:href="@{/member/paging(page=1)}">First</a>-->
+<!--&lt;!&ndash; 이전 링크 활성화 비활성화 &ndash;&gt;-->
+<!--&lt;!&ndash; boardList.getNumber() 사용자:2페이지 getNumber()=1 &ndash;&gt;-->
+<!--<a th:href="${boardList.first} ? '#' : @{/member/paging(page=${boardList.number})}">prev</a>-->
+
+<!--&lt;!&ndash; 페이지 번호 링크(현재 페이지는 숫자만)-->
+<!--        for(int page=startPage; page<=endPage; page++)&ndash;&gt;-->
+<!--<span th:each="page: ${#numbers.sequence(startPage, endPage)}">-->
+<!--&lt;!&ndash; 현재페이지는 링크 없이 숫자만 &ndash;&gt;-->
+<!--    <span th:if="${page == boardList.number + 1}" th:text="${page}"></span>-->
+<!--    &lt;!&ndash; 현재페이지 번호가 아닌 다른 페이지번호에는 링크를 보여줌 &ndash;&gt;-->
+<!--    <span th:unless="${page == boardList.number + 1}">-->
+<!--        <a th:href="@{/member/paging(page=${page})}" th:text="${page}"></a>-->
+<!--    </span>-->
+<!--</span>-->
+
+<!--&lt;!&ndash; 다음 링크 활성화 비활성화-->
+<!--    사용자: 2페이지, getNumber: 1, 3페이지&ndash;&gt;-->
+<!--<a th:href="${boardList.last} ? '#' : @{/member/paging(page=${boardList.number + 2})}">next</a>-->
+<!--&lt;!&ndash; 마지막 페이지로 이동 &ndash;&gt;-->
+<!--<a th:href="@{/member/paging(page=${boardList.totalPages})}">Last</a>-->
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+</form>
+</body>
+<!--<script>-->
+<!--    const saveReq = () => {-->
+<!--        location.href = "/board/save";-->
+<!--    }-->
+
+<!--</script>-->
+</html>
