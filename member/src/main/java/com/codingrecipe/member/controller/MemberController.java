@@ -82,7 +82,7 @@ public class MemberController {
 //    public String findById(@PathVariable Long id, Model model) {
 //        MemberDTO memberDTO = memberService.findById(id);
 //        model.addAttribute("member",memberDTO);
-//        return "detail";
+//        return "detail";//
 //    }
 
     @GetMapping("/member/update")
