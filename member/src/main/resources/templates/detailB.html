@@ -34,8 +34,16 @@
         <div class="container px-5 my-5">
             <div class="row gx-5">
                 <div class="col-lg-3">
-                    <div class="d-flex align-items-center mt-lg-5 mb-4">
+                    <div class="d-flex align-items-center mt-lg-5 mb-4" th:if="${board.fileAttached == 1}">
+                        //여기수정
+                        <th:each="fileName: ${board.storedFileName}"></th:each>
+                        <img class="img-fluid rounded-circle" th:src="@{|/upload/${board.storedFileName}|}" alt="" />
+                    </div>
+
+                    <div class="d-flex align-items-center mt-lg-5 mb-4" th:unless="${board.fileAttached == 1}">
                         <img class="img-fluid rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+                    </div>
+
                         <div class="ms-3">
                             <div class="fw-bold" th:text="${board.boardWriter}"></div>
                             <div class="text-muted" th:text="${board.id}"></div>

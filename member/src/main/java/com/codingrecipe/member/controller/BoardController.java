@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -24,10 +25,10 @@ public class BoardController {
     }
 
     @PostMapping("/saveB")
-    public String saveB(@ModelAttribute BoardDTO boardDTO) {
+    public String saveB(@ModelAttribute BoardDTO boardDTO) throws IOException {
         System.out.println("boardDTO = " + boardDTO);
         boardService.saveB(boardDTO);
-        return "indexB";
+        return "paging";
     }
 
 //    @GetMapping("/indexB")
@@ -45,7 +46,7 @@ public class BoardController {
     public String findAllB(Model modelB) {
         List<BoardDTO> boardDTOList = boardService.findAllB();
         modelB.addAttribute("boardList", boardDTOList);
-        return "indexB";
+        return "paging";
     }
 
     @GetMapping("/{id}")
