@@ -35,7 +35,6 @@
             <div class="row gx-5">
                 <div class="col-lg-3">
                     <div class="d-flex align-items-center mt-lg-5 mb-4" th:if="${board.fileAttached == 1}">
-                        //여기수정
                         <th:each="fileName: ${board.storedFileName}"></th:each>
                         <img class="img-fluid rounded-circle" th:src="@{|/upload/${board.storedFileName}|}" alt="" />
                     </div>
@@ -46,7 +45,7 @@
 
                         <div class="ms-3">
                             <div class="fw-bold" th:text="${board.boardWriter}"></div>
-                            <div class="text-muted" th:text="${board.id}"></div>
+<!--                            <div class="text-muted" th:text="${board.id}"></div>-->
                         </div>
                     </div>
                 </div>
@@ -63,7 +62,8 @@
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!" th:text="${board.boardHits}"></a>
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded"/></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" th:if="${board.fileAttached == 1}" th:src="@{|/upload/${board.storedFileName}|}" alt="..." />
+                        </figure>
                         <!-- Post content-->
                         <section class="mb-5">
                             <p class="fs-5 mb-4" th:text="${board.boardContents}">
@@ -90,9 +90,9 @@
                         </div>
                     </section>
                     <br>
-                    <button onclick="listReq()">목록</button>
-                    <button onclick="updateReq()">수정</button>
-                    <button onclick="deleteReq()">삭제</button>
+                    <button onclick="listReq()">list</button>
+                    <button onclick="updateReq()">modify</button>
+                    <button onclick="deleteReq()">delete</button>
                 </div>
             </div>
         </div>

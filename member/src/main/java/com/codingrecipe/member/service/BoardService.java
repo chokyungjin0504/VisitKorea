@@ -42,7 +42,7 @@ public class BoardService {
 //                MultipartFile boardFile = boardDTO.getBoardFile(); // 1. DTO에 담긴 파일을 꺼냄 -> 더이상 필요 없음
                 String originalFilename = boardFile.getOriginalFilename(); // 2. 파일의 이름 가져옴
                 String storedFileName = System.currentTimeMillis() + "_" + originalFilename; // 3. 서버 저장용 이름을 만듦
-                String savePath = "C:/Projects/springboot_img" + storedFileName; // 4. 저장 경로 설정
+                String savePath = "C:/Projects/springboot_img/" + storedFileName; // 4. 저장 경로 설정
                 boardFile.transferTo(new File(savePath)); // 5. 해당 경로에 파일 저장
 
 
