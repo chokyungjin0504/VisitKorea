@@ -28,7 +28,7 @@ public class BoardController {
     public String saveB(@ModelAttribute BoardDTO boardDTO) throws IOException {
         System.out.println("boardDTO = " + boardDTO);
         boardService.saveB(boardDTO);
-        return "paging";
+        return "redirect:/member/paging";
     }
 
 //    @GetMapping("/indexB")
