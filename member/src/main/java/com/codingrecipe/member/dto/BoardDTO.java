@@ -60,7 +60,7 @@ public class BoardDTO {
             boardDTO.setStoredFileName(storedFilemNameList);
         }
         return boardDTO;
-
+//wt
 
     }
 }
