@@ -61,6 +61,6 @@ public class BoardDTO {
         }
         return boardDTO;
 
-        //왜 안되지
+
     }
 }
