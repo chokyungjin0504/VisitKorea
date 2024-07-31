@@ -4,6 +4,7 @@
 
 
 ##  👩🏻‍💻Overview
+[image1](https://github.com/chokyungjin0504/member/blob/main/image1.png)
 Due to the increase in foreign tourists visiting Korea, we have created a site to recommend tourist attractions in Korea.
 
 
