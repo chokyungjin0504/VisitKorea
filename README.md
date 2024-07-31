@@ -1,6 +1,6 @@
 #  🌏Visit Korea
 > 2023-2 Spring Boot Project
->> bulletin board
+>> bulletin board type
 
 
 ##  👩🏻‍💻Overview
